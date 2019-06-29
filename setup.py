@@ -14,14 +14,14 @@ from setuptools import find_packages, setup
 # Package meta-data.
 NAME = 'arbory'
 DESCRIPTION = 'Nice directory trees.'
-URL = 'https://github.com/n8jhj/arbory'
-EMAIL = 'nathaniel.j.jones@wsu.edu'
 AUTHOR = 'Nathaniel Jones'
-REQUIRES_PYTHON = '>=3.5.0'
+EMAIL = 'nathaniel.j.jones@wsu.edu'
+URL = 'https://github.com/n8jhj/arbory'
 VERSION = '0.0.1'
+REQUIRES_PYTHON = '>=3.5.0'
 
 REQUIRED = [
-    # 'click',
+    # 'Click',
 ]
 
 here = os.path.abspath(os.path.dirname(__file__))
@@ -36,14 +36,14 @@ except FileNotFoundError:
 
 setup(
     name=NAME,
-    version=VERSION,
     description=DESCRIPTION,
     long_description=long_description,
     long_description_content_type='text/markdown',
     author=AUTHOR,
     author_email=EMAIL,
-    python_requires=REQUIRES_PYTHON,
     url=URL,
+    version=VERSION,
+    python_requires=REQUIRES_PYTHON,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     install_requires=REQUIRED,
     include_package_data=True,
