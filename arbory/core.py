@@ -2,6 +2,10 @@ import click
 
 
 @click.command()
-def cli():
-    """Example script."""
-    click.echo('arbory lives here.')
+@click.argument('dirpath', type=click.Path(exists=True, file_okay=False))
+def basic(dirpath):
+    """Generate a basic directory tree.
+
+    The specified path must be an existing directory.
+    """
+    click.echo(dirpath)

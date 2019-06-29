@@ -26,7 +26,7 @@ REQUIRED = [
 
 ENTRY_POINTS = '''
     [console_scripts]
-    arbory=arbory:cli
+    arbory=arbory:basic
 '''
 
 here = os.path.abspath(os.path.dirname(__file__))
