@@ -51,7 +51,7 @@ setup(
     classifiers=[
         # Trove classifiers.
         # Full list: https://pypi.python.org/pypi?%3Aaction=list_classifiers
-        'Decelopment Status :: 1 - Planning',
+        'Development Status :: 1 - Planning',
         'Environment :: Console',
         'Intended Audience :: Developers',
         'License :: OSI Approved :: BSD License',
