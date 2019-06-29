@@ -11,13 +11,14 @@ from shutil import rmtree
 
 from setuptools import find_packages, setup
 
+
 # Package meta-data.
 NAME = 'arbory'
 DESCRIPTION = 'Nice directory trees.'
 AUTHOR = 'Nathaniel Jones'
 EMAIL = 'nathaniel.j.jones@wsu.edu'
 URL = 'https://github.com/n8jhj/arbory'
-VERSION = '0.0.3'
+VERSION = ''  # Use version specified in __version__.py
 REQUIRES_PYTHON = '>=3.5.0'
 
 REQUIRED = [
@@ -39,6 +40,16 @@ try:
 except FileNotFoundError:
     long_description = DESCRIPTION
 
+# Load the package's __version__.py module as a dictionary.
+about = {}
+if not VERSION:
+    project_slug = NAME.lower().replace("-", "_").replace(" ", "_")
+    with open(os.path.join(here, project_slug, '__version__.py')) as f:
+        exec(f.read(), about)
+else:
+    about['__version__'] = VERSION
+
+
 setup(
     name=NAME,
     description=DESCRIPTION,
@@ -47,7 +58,7 @@ setup(
     author=AUTHOR,
     author_email=EMAIL,
     url=URL,
-    version=VERSION,
+    version=about['__version__'],
     python_requires=REQUIRES_PYTHON,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     include_package_data=True,
