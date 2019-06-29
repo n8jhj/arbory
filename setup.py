@@ -45,8 +45,8 @@ setup(
     version=VERSION,
     python_requires=REQUIRES_PYTHON,
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
-    install_requires=REQUIRED,
     include_package_data=True,
+    install_requires=REQUIRED,
     license='BSD',
     classifiers=[
         # Trove classifiers.
