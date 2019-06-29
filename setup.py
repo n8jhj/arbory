@@ -17,7 +17,7 @@ DESCRIPTION = 'Nice directory trees.'
 AUTHOR = 'Nathaniel Jones'
 EMAIL = 'nathaniel.j.jones@wsu.edu'
 URL = 'https://github.com/n8jhj/arbory'
-VERSION = '0.0.1'
+VERSION = '0.0.2'
 REQUIRES_PYTHON = '>=3.5.0'
 
 REQUIRED = [
