@@ -21,8 +21,13 @@ VERSION = '0.0.2'
 REQUIRES_PYTHON = '>=3.5.0'
 
 REQUIRED = [
-    # 'Click',
+    'Click',
 ]
+
+ENTRY_POINTS = '''
+    [console_scripts]
+    arbory=arbory:cli
+'''
 
 here = os.path.abspath(os.path.dirname(__file__))
 
@@ -47,6 +52,7 @@ setup(
     packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
     include_package_data=True,
     install_requires=REQUIRED,
+    entry_points=ENTRY_POINTS,
     license='BSD',
     classifiers=[
         # Trove classifiers.
