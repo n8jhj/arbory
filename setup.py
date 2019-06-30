@@ -1,8 +1,5 @@
 """This setup.py adapted from
 https://github.com/kennethreitz/setup.py/blob/master/setup.py
-
-Note: To use the 'upload' functionality of this file, you must:
-$ pipenv install twine --dev
 """
 
 import os
@@ -60,7 +57,8 @@ setup(
     url=URL,
     version=about['__version__'],
     python_requires=REQUIRES_PYTHON,
-    packages=find_packages(exclude=["tests", "*.tests", "*.tests.*", "tests.*"]),
+    packages=find_packages(
+        exclude=["test", "*.test", "*.test.*", "test.*"]),
     include_package_data=True,
     install_requires=REQUIRED,
     entry_points=ENTRY_POINTS,
