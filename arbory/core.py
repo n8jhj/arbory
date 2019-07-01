@@ -1,3 +1,5 @@
+import os
+
 import click
 
 from .__version__ import __version__
@@ -14,4 +16,10 @@ def tree(dirpath):
 
     The specified path must be an existing directory.
     """
-    click.echo(dirpath)
+    for root, dirs, files in os.walk(dirpath):
+        level = root.replace(dirpath, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        print('{}{}/'.format(indent, os.path.basename(root)))
+        subindent = ' ' * 4 * (level + 1)
+        for f in files:
+            print('{}{}'.format(subindent, f))
