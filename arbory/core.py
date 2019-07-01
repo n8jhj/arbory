@@ -1,3 +1,6 @@
+"""Defines core commands.
+"""
+
 import os
 
 import click
