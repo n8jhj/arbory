@@ -3,13 +3,13 @@
 
 from click.testing import CliRunner
 
-from arbory import basic
+from arbory import tree
 
 
 def test_help():
     """Make sure help is available in both long and short forms."""
     runner = CliRunner()
-    result = runner.invoke(basic, ['--help'])
+    result = runner.invoke(tree, ['--help'])
     assert result.exit_code == 0
-    result = runner.invoke(basic, ['-h'])
+    result = runner.invoke(tree, ['-h'])
     assert result.exit_code == 0
