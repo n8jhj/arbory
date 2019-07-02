@@ -13,7 +13,8 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.version_option(version=__version__, prog_name='arbory')
-@click.argument('dirpath', type=click.Path(exists=True, file_okay=False))
+@click.argument('dirpath', type=click.Path(exists=True, file_okay=False),
+    required=False)
 @click.option('-f', '--include-files', default=True, type=bool,
     show_default=True)
 def tree(dirpath, include_files):
@@ -21,6 +22,10 @@ def tree(dirpath, include_files):
 
     The specified path must be an existing directory.
     """
+    # Check for dirpath argument existence.
+    if dirpath is None:
+        dirpath = os.getcwd()
+    # Make tree.
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
         indent = ' ' * 4 * level
