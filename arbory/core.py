@@ -24,8 +24,9 @@ def tree(dirpath, include_files):
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
         indent = ' ' * 4 * level
-        click.echo('{}{}/'.format(indent, os.path.basename(root)))
+        d_str = os.path.basename(root) + '/'
+        click.echo(indent + click.style(d_str, fg='blue', bg='white'))
         if include_files:
             subindent = ' ' * 4 * (level + 1)
-            for f in files:
-                click.echo('{}{}'.format(subindent, f))
+            for f_str in files:
+                click.echo(subindent + click.style(f_str, fg='green'))

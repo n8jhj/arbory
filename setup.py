@@ -20,6 +20,7 @@ REQUIRES_PYTHON = '>=3.5.0'
 
 REQUIRED = [
     'Click',
+    'colorama',
 ]
 
 ENTRY_POINTS = '''
