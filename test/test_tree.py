@@ -8,7 +8,7 @@ from arbory import tree
 
 
 @pytest.mark.parametrize('cmd, args, output', [
-    (tree, ['tree', '--include-files', 'True'], '\n'.join([
+    (tree, ['tree'], '\n'.join([
         'tree/',
         '    f_tree.txt',
         '    sub1/',
