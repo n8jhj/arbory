@@ -6,17 +6,14 @@ from click.testing import CliRunner
 from arbory import tree
 
 
-def test_tree():
+def test_tree(fs):
+    # Set up fake directory.
+    fs.create_file('tree/tree_file.txt')
+    # Run test.
     runner = CliRunner()
-    result = runner.invoke(tree, ['arbory'])
+    result = runner.invoke(tree, ['tree'])
     assert result.output == '\n'.join([
-        'arbory/',
-        '    core.py',
-        '    __init__.py',
-        '    __version__.py',
-        '    __pycache__/',
-        '        core.cpython-37.pyc',
-        '        __init__.cpython-37.pyc',
-        '        __version__.cpython-37.pyc',
+        'tree/',
+        '    tree_file.txt',
         '',
     ])
