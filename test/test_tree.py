@@ -8,6 +8,7 @@ from arbory import tree
 
 
 @pytest.mark.parametrize('cmd, args, output', [
+    # All defaults for a given directory.
     (tree, ['tree'], '\n'.join([
         'tree/',
         '    f_tree.txt',
@@ -15,6 +16,7 @@ from arbory import tree
         '        f_sub1.txt',
         '',
     ])),
+    # Without files.
     (tree, ['tree', '-f', 'False'], '\n'.join([
         'tree/',
         '    sub1/',
