@@ -22,7 +22,7 @@ def tree(dirpath):
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
         indent = ' ' * 4 * (level)
-        print('{}{}/'.format(indent, os.path.basename(root)))
+        click.echo('{}{}/'.format(indent, os.path.basename(root)))
         subindent = ' ' * 4 * (level + 1)
         for f in files:
-            print('{}{}'.format(subindent, f))
+            click.echo('{}{}'.format(subindent, f))
