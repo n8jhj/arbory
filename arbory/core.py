@@ -14,7 +14,8 @@ CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
 @click.command(context_settings=CONTEXT_SETTINGS)
 @click.version_option(version=__version__, prog_name='arbory')
 @click.argument('dirpath', type=click.Path(exists=True, file_okay=False))
-@click.option('-f', '--include-files', default=True)
+@click.option('-f', '--include-files', default=True, type=bool,
+    show_default=True)
 def tree(dirpath, include_files):
     """Generate a directory tree.
 

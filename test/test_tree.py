@@ -15,6 +15,11 @@ from arbory import tree
         '        f_sub1.txt',
         '',
     ])),
+    (tree, ['tree', '-f', 'False'], '\n'.join([
+        'tree/',
+        '    sub1/',
+        '',
+    ])),
 ])
 def test_tree(fs, cmd, args, output):
     # Set up fake directory.
