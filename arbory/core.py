@@ -1,6 +1,7 @@
 """Defines core commands.
 """
 
+import configparser
 import os
 
 import click
@@ -25,13 +26,24 @@ def tree(dirpath, include_files):
     # Check for dirpath argument existence.
     if dirpath is None:
         dirpath = os.getcwd()
+    # Get configuration specifications.
+    cfg = config_spec()
     # Make tree.
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
         indent = ' ' * 4 * level
         d_str = os.path.basename(root) + '/'
-        click.echo(indent + click.style(d_str, fg='blue', bg='white'))
+        fg_col = cfg['dir_color_fg']
+        bg_col = cfg['dir_color_bg']
+        click.echo(indent + click.style(d_str, fg=fg_col, bg=bg_col))
         if include_files:
             subindent = ' ' * 4 * (level + 1)
             for f_str in files:
-                click.echo(subindent + click.style(f_str, fg='green'))
+                fg_col = cfg['file_color_fg']
+                click.echo(subindent + click.style(f_str, fg=fg_col))
+
+
+def config_spec():
+    config = configparser.ConfigParser()
+    config.read('arbory/config.ini')
+    return config['DEFAULT']
