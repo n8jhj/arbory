@@ -33,10 +33,7 @@ from arbory import tree
         '',
     ])),
 ])
-def test_tree(fs, cmd, args, output):
-    # Set up fake directory.
-    fs.create_file('tree/f_tree.txt')
-    fs.create_file('tree/sub1/f_sub1.txt')
+def test_tree(cmd, args, output):
     # Check for directory argument.
     if len(args) == 0 or len(args[0]) == 0 or args[0][0] == '-':
         os.chdir('tree')
