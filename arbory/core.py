@@ -46,4 +46,5 @@ def tree(dirpath, include_files):
 def config_spec():
     config = configparser.ConfigParser()
     config.read('arbory/config.ini')
-    return config['DEFAULT']
+    selected = config['DEFAULT']['selected']
+    return config[selected]
