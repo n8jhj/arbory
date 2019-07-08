@@ -3,16 +3,10 @@
 
 from click.testing import CliRunner
 
-from arbory import tree
+from arbory import arb
 
 
-def test_config():
+def test_show_config():
     runner = CliRunner()
-    result = runner.invoke(tree, ['tree'])
-    assert result.output == '\n'.join([
-        'tree/',
-        '    f_tree.txt',
-        '    sub1/',
-        '        f_sub1.txt',
-        '',
-    ])
+    result = runner.invoke(arb, ['config'])
+    assert result.output == 'DEFAULT\n'

@@ -4,6 +4,7 @@
 import click
 
 from .__version__ import __version__
+from .config import config
 from .config_spec import config_spec
 from .tree import tree
 
@@ -22,3 +23,4 @@ def arb(ctx):
 
 
 arb.add_command(tree)
+arb.add_command(config)
