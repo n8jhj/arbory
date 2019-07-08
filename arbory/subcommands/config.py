@@ -3,8 +3,6 @@
 
 import click
 
-from arbory.config_spec import config_spec
-
 
 @click.command()
 @click.pass_obj
