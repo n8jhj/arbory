@@ -8,10 +8,7 @@ from .config_spec import config_spec
 from .subcommands import config, tree
 
 
-CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
-
-
-@click.group(context_settings=CONTEXT_SETTINGS)
+@click.group(context_settings=dict(help_option_names=['-h', '--help']))
 @click.pass_context
 @click.version_option(version=__version__, prog_name='arbory')
 def arb(ctx):

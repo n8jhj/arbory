@@ -6,7 +6,7 @@ import os
 import click
 
 
-@click.command()
+@click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.pass_obj
 @click.argument('dirpath', type=click.Path(exists=True, file_okay=False),
     required=False)
