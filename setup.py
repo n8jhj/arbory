@@ -3,8 +3,6 @@ https://github.com/kennethreitz/setup.py/blob/master/setup.py
 """
 
 import os
-import sys
-from shutil import rmtree
 
 from setuptools import find_packages, setup
 
@@ -59,7 +57,8 @@ setup(
     version=about['__version__'],
     python_requires=REQUIRES_PYTHON,
     packages=find_packages(
-        exclude=["test", "*.test", "*.test.*", "test.*"]),
+        exclude=["test", "*.test", "*.test.*", "test.*",
+            "tree"]),
     include_package_data=True,
     install_requires=REQUIRED,
     entry_points=ENTRY_POINTS,
