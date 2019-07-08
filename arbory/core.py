@@ -4,9 +4,8 @@
 import click
 
 from .__version__ import __version__
-from .config import config
 from .config_spec import config_spec
-from .tree import tree
+from .subcommands import config, tree
 
 
 CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])

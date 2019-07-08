@@ -3,7 +3,7 @@
 
 import click
 
-from .config_spec import config_spec
+from arbory.config_spec import config_spec
 
 
 @click.command()
