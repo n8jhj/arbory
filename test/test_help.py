@@ -13,3 +13,5 @@ def test_help():
     assert result.exit_code == 0
     result = runner.invoke(tree, ['-h'])
     assert result.exit_code == 0
+    result = runner.invoke(tree, [])
+    assert result.exit_code == 0

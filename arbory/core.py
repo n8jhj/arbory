@@ -28,7 +28,9 @@ def tree(dirpath, include_files):
     cfg = config_spec()
     # Check for dirpath argument existence.
     if dirpath is None:
-        dirpath = os.getcwd()
+        with click.get_current_context() as ctx:
+            click.echo(tree.get_help(ctx))
+            return
     # Make tree.
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
