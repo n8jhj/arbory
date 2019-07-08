@@ -3,6 +3,7 @@
 
 import configparser
 import os
+import pathlib
 
 import click
 
@@ -45,6 +46,6 @@ def tree(dirpath, include_files):
 
 def config_spec():
     config = configparser.ConfigParser()
-    config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
+    config.read(pathlib.Path(__file__).parent / 'config.ini')
     selected = config['DEFAULT']['selected']
     return config[selected]
