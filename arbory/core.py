@@ -23,11 +23,11 @@ def tree(dirpath, include_files):
 
     The specified path must be an existing directory.
     """
+    # Get configuration specifications.
+    cfg = config_spec()
     # Check for dirpath argument existence.
     if dirpath is None:
         dirpath = os.getcwd()
-    # Get configuration specifications.
-    cfg = config_spec()
     # Make tree.
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
@@ -45,6 +45,6 @@ def tree(dirpath, include_files):
 
 def config_spec():
     config = configparser.ConfigParser()
-    config.read('arbory/config.ini')
+    config.read(os.path.join(os.path.dirname(__file__), 'config.ini'))
     selected = config['DEFAULT']['selected']
     return config[selected]
