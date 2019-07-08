@@ -4,12 +4,12 @@
 from click.testing import CliRunner
 import pytest
 
-from arbory import tree
+from arbory import arb
 
 
 @pytest.mark.parametrize('cmd, args, output', [
     # All defaults for a given directory.
-    (tree, ['tree'], '\n'.join([
+    (arb, ['tree', 'tree'], '\n'.join([
         'tree/',
         '    f_tree.txt',
         '    sub1/',
@@ -17,7 +17,7 @@ from arbory import tree
         '',
     ])),
     # Without files.
-    (tree, ['-f', 'False', 'tree'], '\n'.join([
+    (arb, ['tree', '-f', 'False', 'tree'], '\n'.join([
         'tree/',
         '    sub1/',
         '',
