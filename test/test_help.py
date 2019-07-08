@@ -2,16 +2,28 @@
 """
 
 from click.testing import CliRunner
+import pytest
 
 from arbory import arb
 
 
-def test_help():
+@pytest.mark.parametrize('cmd', [
+    # arbory base command.
+    [],
+    # tree subcommand.
+    ['tree'],
+    # config subcommand.
+    ['config'],
+])
+def test_help(cmd):
     """Make sure help is available in both long and short forms."""
     runner = CliRunner()
-    result = runner.invoke(arb, ['--help'])
+    cmd.append('--help')
+    result = runner.invoke(arb, cmd)
     assert result.exit_code == 0 and 'Usage: ' in result.output
-    result = runner.invoke(arb, ['-h'])
+    cmd[-1] = '-h'
+    result = runner.invoke(arb, cmd)
     assert result.exit_code == 0 and 'Usage: ' in result.output
-    result = runner.invoke(arb, [])
+    del cmd[-1]
+    result = runner.invoke(arb, cmd)
     assert result.exit_code == 0 and 'Usage: ' in result.output
