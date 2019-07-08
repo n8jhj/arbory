@@ -1,8 +1,6 @@
 """Test the core tree functionality of arbory.
 """
 
-import os
-
 from click.testing import CliRunner
 import pytest
 
