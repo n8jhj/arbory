@@ -1,13 +1,10 @@
 """Defines core commands.
 """
 
-import configparser
-import os
-import pathlib
-
 import click
 
 from .__version__ import __version__
+from .config_spec import config_spec
 from .tree import tree
 
 
@@ -22,13 +19,6 @@ def arb(ctx):
     # Get configuration specifications and add to context.
     ctx.ensure_object(dict)
     ctx.obj['config'] = config_spec()
-
-
-def config_spec():
-    config = configparser.ConfigParser()
-    config.read(pathlib.Path(__file__).parent / 'config.ini')
-    selected = config['DEFAULT']['selected']
-    return config[selected]
 
 
 arb.add_command(tree)
