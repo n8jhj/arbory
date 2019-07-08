@@ -17,7 +17,7 @@ from arbory import tree
         '',
     ])),
     # Without files.
-    (tree, ['tree', '-f', 'False'], '\n'.join([
+    (tree, ['-f', 'False', 'tree'], '\n'.join([
         'tree/',
         '    sub1/',
         '',
