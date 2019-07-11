@@ -9,4 +9,4 @@ from arbory import arb
 def test_show_config():
     runner = CliRunner()
     result = runner.invoke(arb, ['config'])
-    assert result.output == 'DEFAULT\n'
+    assert result.output == 'Configuration: DEFAULT\n'
