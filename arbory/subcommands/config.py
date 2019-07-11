@@ -9,4 +9,4 @@ import click
 def config(obj):
     """Manipulate arbory configuration."""
     cfg = obj['config']
-    click.echo(cfg['selected'])
+    click.echo('Current configuration: {}'.format(cfg['selected']))
