@@ -32,3 +32,10 @@ def test_use_option():
     assert result.output == "'yo' does not exist.\n"
     result = runner.invoke(arb, ['config', '--use', 'cobalt'])
     assert result.output == 'Configuration selected: cobalt\n'
+
+
+@pytest.mark.usefixtures('temp_config')
+def test_available():
+    runner = CliRunner()
+    result = runner.invoke(arb, ['config', '--available'])
+    assert result.output == 'DEFAULT\ncobalt\n'

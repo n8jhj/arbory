@@ -6,8 +6,9 @@ import click
 
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.option('-u', '--use')
+@click.option('-a', '--available', is_flag=True)
 @click.pass_obj
-def config(obj, use):
+def config(obj, use, available):
     """Manipulate arbory configuration."""
     cfg = obj['config']
     if use is not None:
@@ -18,6 +19,9 @@ def config(obj, use):
             click.echo('Configuration selected: {}'.format(use))
         else:
             click.echo('{!r} does not exist.'.format(use))
+    elif available:
+        for conf in cfg:
+            click.echo(conf)
     else:
         click.echo('Configuration: {}'.format(cfg['DEFAULT']['selected']))
         return
