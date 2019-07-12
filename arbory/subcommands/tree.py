@@ -17,6 +17,8 @@ def tree(obj, dirpath, include_files):
     The specified path must be an existing directory.
     """
     cfg = obj['config']
+    sel = cfg['DEFAULT']['selected']
+    cfg = cfg[sel]
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
         indent = ' ' * 4 * level

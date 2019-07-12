@@ -15,7 +15,8 @@ def arb(ctx):
     """Utilities for file tree generation."""
     # Get configuration specifications and add to context.
     ctx.ensure_object(dict)
-    ctx.obj['config'] = config_spec()
+    cfg = config_spec()
+    ctx.obj['config'] = cfg
 
 
 arb.add_command(tree)
