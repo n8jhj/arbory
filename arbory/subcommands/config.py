@@ -10,13 +10,14 @@ import click
 def config(obj, use):
     """Manipulate arbory configuration."""
     cfg = obj['config']
-    if use is None:
+    if use is not None:
+        if use in cfg:
+            cfg['DEFAULT']['selected'] = use
+            with open('arbory\\config.ini', 'w') as cf:
+                cfg.write(cf)
+            click.echo('Configuration selected: {}'.format(use))
+        else:
+            click.echo('{!r} does not exist.'.format(use))
+    else:
         click.echo('Configuration: {}'.format(cfg['DEFAULT']['selected']))
         return
-    if use in cfg:
-        cfg['DEFAULT']['selected'] = use
-        with open('arbory\\config.ini', 'w') as cf:
-            cfg.write(cf)
-        click.echo('Configuration selected: {}'.format(use))
-    else:
-        click.echo('{!r} does not exist.'.format(use))
