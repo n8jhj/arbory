@@ -10,8 +10,10 @@ from arbory.const import KW_CONF_SEL
 
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.option('-u', '--use')
-@click.option('-a', '--available', is_flag=True)
-@click.option('-o', '--options', is_flag=True)
+@click.option('-a', '--available', is_flag=True,
+    help='Show all available configurations.')
+@click.option('-o', '--options', is_flag=True,
+    help='Show all configuration options.')
 @click.pass_obj
 def config(obj, use, available, options):
     """Manipulate arbory configuration."""
