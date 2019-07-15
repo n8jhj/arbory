@@ -39,3 +39,12 @@ def test_available():
     runner = CliRunner()
     result = runner.invoke(arb, ['config', '--available'])
     assert result.output == 'DEFAULT\ncobalt\n'
+
+
+@pytest.mark.usefixtures('temp_config')
+def test_options():
+    runner = CliRunner()
+    result = runner.invoke(arb, ['config', '--options'])
+    for opt in ('dir_color_fg', 'dir_color_bg', 'file_color_fg'):
+        assert opt in result.output
+    assert 'selected' not in result.output
