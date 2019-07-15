@@ -25,12 +25,16 @@ def config(obj, use, available, options):
         else:
             click.echo('{!r} does not exist.'.format(use))
     elif available:
+        output = []
         for conf in cfg:
-            click.echo(conf)
+            output.append(conf)
+        click.echo('\n'.join(output))
     elif options:
+        output = []
         for opt in cfg['DEFAULT']:
             if opt != KW_CONF_SEL:
-                click.echo(opt)
+                output.append(opt)
+        click.echo('\n'.join(output))
     else:
         click.echo('Configuration: {}'.format(cfg['DEFAULT'][KW_CONF_SEL]))
         return
