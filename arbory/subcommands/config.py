@@ -29,7 +29,8 @@ def config(obj, use, available, options):
             click.echo(conf)
     elif options:
         for opt in cfg['DEFAULT']:
-            click.echo(opt)
+            if opt != KW_CONF_SEL:
+                click.echo(opt)
     else:
         click.echo('Configuration: {}'.format(cfg['DEFAULT'][KW_CONF_SEL]))
         return
