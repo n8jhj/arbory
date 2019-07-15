@@ -1,6 +1,8 @@
 """Define functionality for manipulating the configuration.
 """
 
+import pathlib
+
 import click
 
 
@@ -14,7 +16,7 @@ def config(obj, use, available):
     if use is not None:
         if use in cfg:
             cfg['DEFAULT']['selected'] = use
-            with open('arbory\\config.ini', 'w') as cf:
+            with open(pathlib.Path('arbory') / 'config.ini', 'w') as cf:
                 cfg.write(cf)
             click.echo('Configuration selected: {}'.format(use))
         else:
