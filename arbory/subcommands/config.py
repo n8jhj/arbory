@@ -5,6 +5,8 @@ import pathlib
 
 import click
 
+from arbory.const import KW_CONF_SEL
+
 
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.option('-u', '--use')
@@ -16,7 +18,7 @@ def config(obj, use, available, options):
     cfg = obj['config']
     if use is not None:
         if use in cfg:
-            cfg['DEFAULT']['selected'] = use
+            cfg['DEFAULT'][KW_CONF_SEL] = use
             with open(pathlib.Path('arbory') / 'config.ini', 'w') as cf:
                 cfg.write(cf)
             click.echo('Configuration selected: {}'.format(use))
@@ -29,5 +31,5 @@ def config(obj, use, available, options):
         for opt in cfg['DEFAULT']:
             click.echo(opt)
     else:
-        click.echo('Configuration: {}'.format(cfg['DEFAULT']['selected']))
+        click.echo('Configuration: {}'.format(cfg['DEFAULT'][KW_CONF_SEL]))
         return

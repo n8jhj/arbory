@@ -5,6 +5,8 @@ import os
 
 import click
 
+from arbory.const import KW_CONF_SEL
+
 
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.pass_obj
@@ -17,7 +19,7 @@ def tree(obj, dirpath, include_files):
     The specified path must be an existing directory.
     """
     cfg = obj['config']
-    sel = cfg['DEFAULT']['selected']
+    sel = cfg['DEFAULT'][KW_CONF_SEL]
     cfg = cfg[sel]
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)

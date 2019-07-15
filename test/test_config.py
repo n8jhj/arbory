@@ -7,7 +7,7 @@ import shutil
 from click.testing import CliRunner
 import pytest
 
-from arbory import arb
+from arbory import arb, const
 
 
 @pytest.fixture
@@ -47,4 +47,4 @@ def test_options():
     result = runner.invoke(arb, ['config', '--options'])
     for opt in ('dir_color_fg', 'dir_color_bg', 'file_color_fg'):
         assert opt in result.output
-    assert 'selected' not in result.output
+    assert const.KW_CONF_SEL not in result.output
