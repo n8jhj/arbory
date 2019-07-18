@@ -9,7 +9,8 @@ from arbory.const import KW_CONF_SEL
 
 
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
-@click.option('-u', '--use')
+@click.option('-u', '--use',
+    help='Specify a configuration to use.')
 @click.option('-a', '--available', is_flag=True,
     help='Show all available configurations.')
 @click.option('-o', '--options', is_flag=True,
