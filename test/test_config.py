@@ -26,25 +26,25 @@ def test_show_config():
 
 
 @pytest.mark.usefixtures('temp_config')
-def test_use_option():
+def test_use():
     runner = CliRunner()
-    result = runner.invoke(arb, ['config', '--use', 'yo'])
+    result = runner.invoke(arb, ['config', 'use', 'yo'])
     assert result.output == "'yo' does not exist.\n"
-    result = runner.invoke(arb, ['config', '--use', 'cobalt'])
+    result = runner.invoke(arb, ['config', 'use', 'cobalt'])
     assert result.output == 'Configuration selected: cobalt\n'
 
 
 @pytest.mark.usefixtures('temp_config')
 def test_available():
     runner = CliRunner()
-    result = runner.invoke(arb, ['config', '--available'])
+    result = runner.invoke(arb, ['config', 'available'])
     assert result.output == 'DEFAULT\ncobalt\n'
 
 
 @pytest.mark.usefixtures('temp_config')
 def test_options():
     runner = CliRunner()
-    result = runner.invoke(arb, ['config', '--options'])
+    result = runner.invoke(arb, ['config', 'options'])
     for opt in ('dir_color_fg', 'dir_color_bg', 'file_color_fg'):
         assert opt in result.output
     assert const.KW_CONF_SEL not in result.output
