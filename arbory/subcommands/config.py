@@ -8,36 +8,49 @@ import click
 from arbory.const import KW_CONF_SEL
 
 
-@click.command(context_settings=dict(help_option_names=['-h', '--help']))
-@click.option('-u', '--use',
-    help='Specify a configuration to use.')
-@click.option('-a', '--available', is_flag=True,
-    help='Show all available configurations.')
-@click.option('-o', '--options', is_flag=True,
-    help='Show all configuration options.')
-@click.pass_obj
-def config(obj, use, available, options):
-    """Manipulate arbory configuration."""
-    cfg = obj['config']
-    if use is not None:
-        if use in cfg:
-            cfg['DEFAULT'][KW_CONF_SEL] = use
-            with open(pathlib.Path('arbory') / 'config.ini', 'w') as cf:
-                cfg.write(cf)
-            click.echo('Configuration selected: {}'.format(use))
-        else:
-            click.echo('{!r} does not exist.'.format(use))
-    elif available:
-        output = []
-        for conf in cfg:
-            output.append(conf)
-        click.echo('\n'.join(output))
-    elif options:
-        output = []
-        for opt in cfg['DEFAULT']:
-            if opt != KW_CONF_SEL:
-                output.append(opt)
-        click.echo('\n'.join(output))
-    else:
+CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
+
+
+@click.group(context_settings=CONTEXT_SETTINGS, invoke_without_command=True)
+@click.pass_context
+def config(ctx):
+    """Display current configuration name."""
+    if ctx.invoked_subcommand is None:
+        cfg = ctx.obj['config']
         click.echo('Configuration: {}'.format(cfg['DEFAULT'][KW_CONF_SEL]))
-        return
+
+
+@config.command(context_settings=CONTEXT_SETTINGS)
+@click.argument('conf_name')
+@click.pass_obj
+def use(obj, conf_name):
+    """Specify a configuration to use."""
+    cfg = obj['config']
+    if conf_name in cfg:
+        cfg['DEFAULT'][KW_CONF_SEL] = conf_name
+        with open(pathlib.Path('arbory') / 'config.ini', 'w') as cf:
+            cfg.write(cf)
+        click.echo('Configuration selected: {}'.format(conf_name))
+    else:
+        click.echo('{!r} does not exist.'.format(conf_name))
+
+
+@config.command(context_settings=CONTEXT_SETTINGS)
+@click.pass_obj
+def available(obj):
+    """List all available configurations."""
+    output = []
+    for conf in obj['config']:
+        output.append(conf)
+    click.echo('\n'.join(output))
+
+
+@config.command(context_settings=CONTEXT_SETTINGS)
+@click.pass_obj
+def options(obj):
+    """List all configuration options."""
+    output = []
+    for opt in obj['config']['DEFAULT']:
+        if opt != KW_CONF_SEL:
+            output.append(opt)
+    click.echo('\n'.join(output))
