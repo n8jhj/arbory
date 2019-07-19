@@ -22,7 +22,7 @@ def temp_config(tmpdir):
 def test_show_config():
     runner = CliRunner()
     result = runner.invoke(arb, ['config'])
-    assert result.output == 'Configuration: DEFAULT\n'
+    assert result.output == 'Current configuration: DEFAULT\n'
 
 
 @pytest.mark.usefixtures('temp_config')

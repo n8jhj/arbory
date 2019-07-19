@@ -17,7 +17,8 @@ def config(ctx):
     """Display current configuration name."""
     if ctx.invoked_subcommand is None:
         cfg = ctx.obj['config']
-        click.echo('Configuration: {}'.format(cfg['DEFAULT'][KW_CONF_SEL]))
+        click.echo('Current configuration: {}'.format(
+            cfg['DEFAULT'][KW_CONF_SEL]))
 
 
 @config.command(context_settings=CONTEXT_SETTINGS)
