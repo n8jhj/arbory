@@ -2,4 +2,9 @@
 
 Nice directory trees.
 
-https://pypi.org/project/arbory/
+Install from [PyPI](https://pypi.org/project/arbory/):
+`pip install arbory`
+
+---
+
+> Written with [StackEdit](https://stackedit.io/).
