@@ -13,7 +13,7 @@ from arbory.const import KW_CONF_SEL
 @click.argument('dirpath', type=click.Path(exists=True, file_okay=False))
 @click.option('-f/-F', '--include-files/--no-files', default=True,
     show_default=True)
-@click.option('-d', '--depth', type=int, default=3, show_default=True,
+@click.option('-d', '--depth', type=int, default=1, show_default=True,
     help="Depth to recurse to.")
 def tree(obj, dirpath, include_files, depth):
     """Make file tree.
