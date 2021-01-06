@@ -8,7 +8,7 @@ import click
 from arbory.const import KW_CONF_SEL
 
 
-@click.command(context_settings=dict(help_option_names=['-h', '--help']))
+@click.command()
 @click.pass_obj
 @click.argument('dirpath', type=click.Path(exists=True, file_okay=False))
 @click.option('-f/-F', '--include-files/--no-files', default=True,

@@ -8,10 +8,7 @@ import click
 from arbory.const import KW_CONF_SEL
 
 
-CONTEXT_SETTINGS = dict(help_option_names=['-h', '--help'])
-
-
-@click.group(context_settings=CONTEXT_SETTINGS, invoke_without_command=True)
+@click.group(invoke_without_command=True)
 @click.pass_context
 def config(ctx):
     """Display current configuration name."""
@@ -21,7 +18,7 @@ def config(ctx):
             cfg['DEFAULT'][KW_CONF_SEL]))
 
 
-@config.command(context_settings=CONTEXT_SETTINGS)
+@config.command()
 @click.argument('conf_name')
 @click.pass_obj
 def use(obj, conf_name):
@@ -36,7 +33,7 @@ def use(obj, conf_name):
         click.echo('{!r} does not exist.'.format(conf_name))
 
 
-@config.command(context_settings=CONTEXT_SETTINGS)
+@config.command()
 @click.pass_obj
 def available(obj):
     """List all available configurations."""
@@ -46,7 +43,7 @@ def available(obj):
     click.echo('\n'.join(output))
 
 
-@config.command(context_settings=CONTEXT_SETTINGS)
+@config.command()
 @click.pass_obj
 def options(obj):
     """List all configuration options."""
