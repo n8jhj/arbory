@@ -11,9 +11,11 @@ from arbory.const import KW_CONF_SEL
 @click.command(context_settings=dict(help_option_names=['-h', '--help']))
 @click.pass_obj
 @click.argument('dirpath', type=click.Path(exists=True, file_okay=False))
-@click.option('-f', '--include-files', default=True, type=bool,
+@click.option('-f/-F', '--include-files/--no-files', default=True,
     show_default=True)
-def tree(obj, dirpath, include_files):
+@click.option('-d', '--depth', type=int, default=3, show_default=True,
+    help="Depth to recurse to.")
+def tree(obj, dirpath, include_files, depth):
     """Make file tree.
 
     The specified path must be an existing directory.
@@ -23,6 +25,9 @@ def tree(obj, dirpath, include_files):
     cfg = cfg[sel]
     for root, dirs, files in os.walk(dirpath):
         level = root.replace(dirpath, '').count(os.sep)
+        # Depth of -1 or lower shows entire tree.
+        if level >= 0 and level > depth:
+            continue
         indent = ' ' * 4 * level
         d_str = os.path.basename(root) + '/'
         fg_col = cfg['dir_color_fg']
