@@ -11,7 +11,8 @@ from arbory.const import KW_CONF_SEL
 
 @click.command()
 @click.pass_obj
-@click.argument('dirpath', type=click.Path(exists=True, file_okay=False))
+@click.argument('dirpath', type=click.Path(exists=True, file_okay=False),
+    required=False)
 @click.option('-f/-F', '--include-files/--no-files', default=True,
     show_default=True)
 @click.option('-d', '--depth', type=int, default=1, show_default=True,
@@ -23,8 +24,10 @@ def tree(obj, dirpath, include_files, depth, show_sizes):
     cfg = obj['config']
     sel = cfg['DEFAULT'][KW_CONF_SEL]
     cfg = cfg[sel]
+    if not dirpath:
+        dirpath = pathlib.Path.cwd()
     for root, dirs, files in os.walk(dirpath):
-        dirlevel = root.replace(dirpath, '').count(os.sep)
+        dirlevel = root.replace(str(dirpath), '').count(os.sep)
         filelevel = dirlevel + 1
         # Depth of -1 or lower shows entire tree.
         if dirlevel >= 0 and dirlevel > depth:
